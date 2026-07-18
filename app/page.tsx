@@ -11,6 +11,38 @@ const gallery = [
   { src: "/images/pat-famous-with-dog.jpg", alt: "Pat Famous relaxing with a dog", caption: "Easygoing energy" },
 ];
 
+const sceneStudies = [
+  {
+    src: "/images/pat-famous-baseball-character.jpg",
+    alt: "Pat Famous in a vintage Boston baseball uniform",
+    genre: "Period · Sports",
+    role: "The veteran ballplayer",
+  },
+  {
+    src: "/images/pat-famous-casino-character.jpg",
+    alt: "Pat Famous in a cinematic underground card-game scene",
+    genre: "Crime · Noir",
+    role: "The connected outsider",
+  },
+  {
+    src: "/images/pat-famous-space-character.jpg",
+    alt: "Pat Famous as an astronaut working inside a spacecraft",
+    genre: "Science fiction",
+    role: "The mission specialist",
+    wide: true,
+  },
+];
+
+const skills = [
+  "Karate",
+  "Stunt Dummy",
+  "Karaoke Champ",
+  "High Score Recipient",
+  "Award for Full-Baller-Status",
+  "Acoustic Guitar Hater",
+  "Police Horse Whisper",
+];
+
 export default function Home() {
   return (
     <main>
@@ -22,6 +54,16 @@ export default function Home() {
           <a href="#about">About</a><a href="#headshots">Headshots</a><a href="#contact" className="nav-cta">Book Pat</a>
         </nav>
       </header>
+
+      <section className="skills-marquee" aria-label={`Additional skills: ${skills.join(", ")}`}>
+        <div className="skills-track" aria-hidden="true">
+          {[0, 1].map((copy) => (
+            <div className="skills-set" key={copy}>
+              {skills.map((skill) => <span key={`${copy}-${skill}`}><i>◆</i>{skill}</span>)}
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="hero" id="top">
         <div className="hero-copy">
@@ -35,7 +77,7 @@ export default function Home() {
           <ul className="quick-facts" aria-label="Work categories"><li>On camera</li><li>Voice work</li><li>Background</li></ul>
         </div>
         <div className="hero-visual" aria-label="Portrait of Pat Famous">
-          <div className="hero-frame"><img src="/images/pat-famous-beige-jacket.jpg" alt="Pat Famous in a light neutral jacket" width="1086" height="1448" /></div>
+          <div className="hero-frame"><img src="/images/pat-famous-hero-cowboy.jpg" alt="Pat Famous in a weathered cowboy hat and leather coat" width="1122" height="1402" /></div>
           <p className="hero-note">Available for castings &amp; collaborations</p><span className="frame-number" aria-hidden="true">01</span>
         </div>
       </section>
@@ -71,9 +113,30 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="scene-studies section" id="scenes">
+        <div className="scene-heading">
+          <div className="section-kicker"><span>04</span><p>Scene studies</p></div>
+          <div>
+            <h2>Put him in the story.</h2>
+            <p>From period pieces to grounded crime drama and science fiction, Pat can step into a world and immediately feel like he belongs there.</p>
+          </div>
+        </div>
+        <div className="scene-grid">
+          {sceneStudies.map((scene, index) => (
+            <figure key={scene.src} className={`scene-card${scene.wide ? " scene-card-wide" : ""}`}>
+              <img src={scene.src} alt={scene.alt} loading="lazy" />
+              <figcaption>
+                <span className="scene-number">{String(index + 1).padStart(2, "0")}</span>
+                <span><small>{scene.genre}</small><strong>{scene.role}</strong></span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       <section className="headshots section" id="headshots">
         <div className="section-heading">
-          <div className="section-kicker light"><span>04</span><p>Headshots</p></div><h2>Ready for the role.</h2><p>A versatile set of looks for casting, commercial, and character work.</p>
+          <div className="section-kicker light"><span>05</span><p>Headshots</p></div><h2>Ready for the role.</h2><p>A versatile set of looks for casting, commercial, and character work.</p>
         </div>
         <div className="headshot-grid">
           {headshots.map((shot, index) => (
@@ -86,7 +149,7 @@ export default function Home() {
       </section>
 
       <section className="life section">
-        <div className="section-kicker"><span>05</span><p>Beyond the headshot</p></div>
+        <div className="section-kicker"><span>06</span><p>Beyond the headshot</p></div>
         <div className="life-intro"><h2>Natural in the frame.</h2><p>Relaxed, recognizable, and ready to step into the world of the story.</p></div>
         <div className="life-grid">
           {gallery.map((photo) => <figure key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" /><figcaption>{photo.caption}</figcaption></figure>)}
@@ -95,8 +158,12 @@ export default function Home() {
 
       <section className="contact section" id="contact">
         <div className="contact-copy">
-          <div className="section-kicker light"><span>06</span><p>Casting inquiries</p></div><h2>Put Pat in the room.</h2>
+          <div className="section-kicker light"><span>07</span><p>Casting inquiries</p></div><h2>Put Pat in the room.</h2>
           <p>Share the project, role, dates, and location. Pat will follow up with availability and any additional casting materials you need.</p>
+          <div className="direct-contact" aria-label="Direct contact information">
+            <a href="mailto:faymous1225@gmail.com"><span>Email</span><strong>faymous1225@gmail.com</strong></a>
+            <a href="tel:+17606228463"><span>Phone</span><strong>760-622-8463</strong></a>
+          </div>
           <div className="contact-tags" aria-label="Open to"><span>Acting</span><span>Voice</span><span>Extra work</span><span>Commercial</span></div>
         </div>
         <form className="contact-form" name="casting-inquiry" method="POST" action="/thanks/" data-netlify="true" data-netlify-honeypot="bot-field">
