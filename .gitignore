@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+
+# Next.js output
+/.next
+/out
+
+# local files
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Netlify local state
+/.netlify
